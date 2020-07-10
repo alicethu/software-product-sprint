@@ -1,5 +1,10 @@
 # Google Software Product Sprint
 
+This repo contains my work for Google's SPS program (summer 2020).
+
+
+<-- Original Repo -->
+
 This repo contains the projects you'll work on throughout SPS.
 
 To get started:
