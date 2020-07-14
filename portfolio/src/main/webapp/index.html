@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
   </head>
-  <body>
+  <body onload="getContent()">
     <div id="content">
       <h1>Hello World! I'm Alice.</h1>
       <p>I'm a student in the Google SPS program. This is my portfolio.</p>
@@ -19,6 +19,7 @@
       <button onclick="addRandomFact()">Random Fact</button>
       <div id="fact-container"></div>
       <p>You can find me <a href="https://github.com/alicethu">@alicethu</a> on GitHub.</p>
+      <div id="content-container"></div>
     </div>
   </body>
 </html>

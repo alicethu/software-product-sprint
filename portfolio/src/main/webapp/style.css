@@ -4,7 +4,7 @@
   width: 500px;
 }
 
-#fact-container {
+#fact-container, #content-container {
   margin-top: 20px;
 }
 
