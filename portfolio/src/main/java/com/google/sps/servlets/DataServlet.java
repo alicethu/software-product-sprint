@@ -24,16 +24,30 @@ import java.util.ArrayList;
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.PreparedQuery;
+import com.google.appengine.api.datastore.Query;
+import com.google.appengine.api.datastore.Query.SortDirection;
 
 /** Servlet that returns some example content. TODO: modify this file to handle comments data */
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
-    
-    ArrayList<String> list = new ArrayList<String>();
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    String json = new Gson().toJson(list);
+    Query query = new Query("Message").addSort("timestamp", SortDirection.DESCENDING);
+
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    PreparedQuery results = datastore.prepare(query);
+
+    ArrayList<String> messages = new ArrayList<>();
+    for (Entity entity : results.asIterable()) {
+      long id = entity.getKey().getId();
+      String message = (String) entity.getProperty("message");
+
+      messages.add(message);
+    }
+
+    String json = new Gson().toJson(messages);
 
     // Send the JSON as the response
     response.setContentType("application/json;");
@@ -46,7 +60,6 @@ public class DataServlet extends HttpServlet {
     String message = request.getParameter("message");
     long timestamp = System.currentTimeMillis();
 
-    list.add(message);
     Entity msgEntity = new Entity("Message");
     msgEntity.setProperty("message", message);
     msgEntity.setProperty("timestamp", timestamp);
