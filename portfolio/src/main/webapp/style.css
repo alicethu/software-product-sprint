@@ -13,7 +13,9 @@ img {
 }
 
 #map {
-    height: 80%;
+    height: 100%;
+    width: 50%;
+    margin: 20px auto;
 }
 
 html, body {
