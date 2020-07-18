@@ -30,12 +30,13 @@
       <p>Previous messages:</p>
       <div id="content-container"></div>
     </div>
+    <h2>Map of my university</h2>
     <div id="map"></div>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDiJ61uiP62_gf5guTAyzZN4n2T84uKF-A"></script>
     <script>
       var map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: 40.674, lng: -73.945},
-          zoom: 12,
+          center: {lat: 42.447049, lng: -76.483542},
+          zoom: 15,
           mapTypeId: 'terrain',
           styles: [
             {elementType: 'geometry', stylers: [{color: '#242f3e'}]},
@@ -117,6 +118,12 @@
               stylers: [{color: '#17263c'}]
             }
           ]
+        });
+
+        const trexMarker = new google.maps.Marker({
+            position: {lat: 42.447890, lng: -76.485938},
+            map: map,
+            title: 'Favorite spot on campus'
         });
     </script>
   </body>
